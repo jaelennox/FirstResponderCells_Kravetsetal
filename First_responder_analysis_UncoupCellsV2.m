@@ -6,56 +6,17 @@ close all
 clear all
 clc
 
-
-addpath('C:\Users\dwuletj\Documents\GitHub\UniversalCode\')
-addpath('/Users/jdwulet/Documents/GitHub/UniversalCode/')
-
 %% 1. INPUT PARAMETERS
-mainpath = '/Volumes/Seagate Backup Plus Drive/ForViraNewResponders/';
-resultspath = '/Users/jdwulet/Google Drive/LabStuff/Projects/FirstResponder/';
 
-% name = 'uncoupled_perc10_v2';
-% files = {'Uncouple_FirstResp_Seed1_perc10', 'Uncouple_FirstResp_Seed2_perc10', 'Uncouple_FirstResp_Seed3_perc10', 'Uncouple_FirstResp_Seed4_perc10', 'Uncouple_FirstResp_Seed5_perc10'};
-% 
-% name = 'uncoupled_perc05_v2';
-% files = {'Uncouple_FirstResp_Seed1_perc05', 'Uncouple_FirstResp_Seed2_perc05', 'Uncouple_FirstResp_Seed3_perc05', 'Uncouple_FirstResp_Seed4_perc05', 'Uncouple_FirstResp_Seed5_perc05'};
-% name = 'uncoupled_perc1_v2';
-% files = {'Uncouple_FirstResp_Seed1_perc1', 'Uncouple_FirstResp_Seed2_perc1', 'Uncouple_FirstResp_Seed3_perc1', 'Uncouple_FirstResp_Seed4_perc1', 'Uncouple_FirstResp_Seed5_perc1'};
-% name = 'uncoupled_perc20_v2';
-% files = {'Uncouple_FirstResp_Seed1_perc20', 'Uncouple_FirstResp_Seed2_perc20', 'Uncouple_FirstResp_Seed3_perc20', 'Uncouple_FirstResp_Seed4_perc20', 'Uncouple_FirstResp_Seed5_perc20'};
-% name = 'uncoupled_perc30_v2';
-% files = {'Uncouple_FirstResp_Seed1_perc30', 'Uncouple_FirstResp_Seed2_perc30', 'Uncouple_FirstResp_Seed3_perc30', 'Uncouple_FirstResp_Seed4_perc30',  'Uncouple_FirstResp_Seed5_perc30'};
-% name = 'uncoupled_perc50_v2';
-% files = {'Uncouple_FirstResp_Seed1_perc50', 'Uncouple_FirstResp_Seed2_perc50', 'Uncouple_FirstResp_Seed3_perc50', 'Uncouple_FirstResp_Seed4_perc50', 'Uncouple_FirstResp_Seed5_perc50'};
-% 
-% name = 'uncoupled_random_perc05_v2';
-% files = {'AblationSeed1_perc05', 'AblationSeed2_perc05', 'AblationSeed3_perc05', 'AblationSeed4_perc05', 'AblationSeed5_perc05'};
-% name = 'uncoupled_random_perc1_v2';
-% files = {'AblationSeed1_perc1', 'AblationSeed2_perc1', 'AblationSeed3_perc1', 'AblationSeed4_perc1',  'AblationSeed5_perc1'};
-% name = 'uncoupled_random_perc10_v2';
-% files = {'AblationSeed1_perc10', 'AblationSeed2_perc10', 'AblationSeed3_perc10', 'AblationSeed4_perc10', 'AblationSeed5_perc10'};
-% name = 'uncoupled_random_perc20_v2';
-% files = {'AblationSeed1_perc20', 'AblationSeed2_perc20', 'AblationSeed3_perc20', 'AblationSeed4_perc20', 'AblationSeed5_perc20'};
-% name = 'uncoupled_random_perc30_v2';
-% files = {'AblationSeed1_perc30', 'AblationSeed2_perc30', 'AblationSeed3_perc30', 'AblationSeed4_perc30', 'AblationSeed5_perc30'};
-% name = 'uncoupled_random_perc50_v2';
-% files = {'AblationSeed1_perc50', 'AblationSeed2_perc50', 'AblationSeed3_perc50', 'AblationSeed4_perc50', 'AblationSeed5_perc50'};
+files = {'Uncouple_FirstResp_Seed1_perc10'};
 
-%%change XYZ
-name = 'uncoupled_perc10_changeXYZ';
-files = {'Uncouple_FirstResp_Seed1_perc10_changeXYZ', 'Uncouple_FirstResp_Seed2_perc10_changeXYZ', 'Uncouple_FirstResp_Seed3_perc10_changeXYZ', 'Uncouple_FirstResp_Seed4_perc10_changeXYZ', 'Uncouple_FirstResp_Seed5_perc10_changeXYZ'};
-
-name = 'uncoupled_perc10_changeXYZ_newsphere';
-files = {'Uncouple_FirstResp_Seed1_perc10_changeXYZ_newsphere', 'Uncouple_FirstResp_Seed2_perc10_changeXYZ_newsphere', 'Uncouple_FirstResp_Seed3_perc10_changeXYZ_newsphere', 'Uncouple_FirstResp_Seed4_perc10_changeXYZ_newsphere', 'Uncouple_FirstResp_Seed5_perc10_changeXYZ_newsphere'}
-
-
-seed = {'1', '2', '3', '4', '5'};
+seed = {'1'};
 numfirstresponder = 100;
 
 %% 1. INPUT PARAMETERS
 for ii = 1:length(files)
     
-    filepath = [mainpath files{ii}];
+    filepath = [files{ii}];
     %filepath = '/Users/vira/Desktop/Simulations_WorkFromHome11_20_19/Islet1_leadingVKcorrectSeed1';
     
     calciumT = importdata([filepath '/calcium.txt']);
@@ -272,13 +233,13 @@ for ii = 1:length(files)
     
     
     Firstvalues = CoupCells(FirstInd(1:numfirstresponder))-1;
-%     dlmwrite([resultspath name 'Seed' seed{ii} 'FirstResponder' num2str(numuncoupled) '.txt'], Firstvalues);
+    %     dlmwrite([resultspath name 'Seed' seed{ii} 'FirstResponder' num2str(numuncoupled) '.txt'], Firstvalues);
     try
         Secondvalues = CoupCells(FirstInd(numfirstresponder+1:numfirstresponder*2))-1;
-%         dlmwrite([resultspath name 'Seed' seed{ii} 'SecondResponder' num2str(numuncoupled) '.txt'], Secondvalues);
+        %         dlmwrite([resultspath name 'Seed' seed{ii} 'SecondResponder' num2str(numuncoupled) '.txt'], Secondvalues);
     catch
     end
-   % saveAllFigsToPPT([resultspath name 'Seed' seed{ii} datestr(datetime('today'))]);
+    % saveAllFigsToPPT([resultspath name 'Seed' seed{ii} datestr(datetime('today'))]);
 end
 
 TrespCellsFirst_mean=mean(TrespF)';
@@ -290,10 +251,3 @@ Means = [TrespCellsFirst_mean/10, TrespCellsLast_mean/10, (TrespCellsLast_mean-T
 for m = 1:length(Means)
     allmeans.(MeansLabels{m}) = Means(:,m);
 end
-
-%whichcells_first;
-% filename = [resultspath name 'summarydata' datestr(datetime('today'))];
-% T = struct2table(allmeans);
-% writetable(T,[filename '.xlsx']);
-% 
-% save([resultspath name 'workspace_first_ind_parameters_' num2str(numuncoupled)])

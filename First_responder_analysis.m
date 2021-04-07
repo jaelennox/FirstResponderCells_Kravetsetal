@@ -6,77 +6,18 @@ close all
 clear all
 clc
 
-val=[100];
-% addpath('C:\Users\dwuletj\Documents\GitHub\UniversalCode\')
-% addpath('/Users/jdwulet/Documents/GitHub/UniversalCode/')
-checkcells = 1;
 random = 0;
 
 %% 1. INPUT PARAMETERS
-mainpath = '/Volumes/Seagate Backup Plus Drive/ForViraNewResponders/';
-resultspath = '/Users/jdwulet/Google Drive/LabStuff/Projects/FirstResponder/';
-
-seed = {'1', '2', '3', '4', '5'};
+seed = {'1'};
 name = 'WT100';
 checkcells = 0;
-% val = [5];
-%val = [10];
 val = [100];
-% val = [200];
-% val = [300];
-% val = [500];
-files = {'WT_G2to11_Coup120Seed1/'; 'WT_G2to11_Coup120Seed2/'; 'WT_G2to11_Coup120Seed3/';...
-    'WT_G2to11_Coup120Seed4/';'WT_G2to11_Coup120Seed5/'};
-
-% name = 'WT100_changeXYZ';
-% files = {'WT_G2to11_Coup120Seed1_changeXYZ/'; 'WT_G2to11_Coup120Seed2_changeXYZ/'; 'WT_G2to11_Coup120Seed3_changeXYZ/';...
-%     'WT_G2to11_Coup120Seed4_changeXYZ/';'WT_G2to11_Coup120Seed5_changeXYZ/'};
-
-% name = 'WT100_changeXYZ_newsphere';
-% files = {'WT_G2to11_Coup120Seed1_changeXYZ_newsphere/'; 'WT_G2to11_Coup120Seed2_changeXYZ_newsphere/'; 'WT_G2to11_Coup120Seed3_changeXYZ_newsphere/';...
-%     'WT_G2to11_Coup120Seed4_changeXYZ_newsphere/';'WT_G2to11_Coup120Seed5_changeXYZ_newsphere/'};
-
-
-% checkcells = 1;
-% val=[100];
-% name = 'Coup'
-% files = {'Coup_MovetoAvg_seed1/'; 'Coup_MovetoAvg_seed2/'; 'Coup_MovetoAvg_seed3/'; 'Coup_MovetoAvg_seed4/'; 'Coup_MovetoAvg_seed5/'};
-% name = 'GK'
-% files = {'GK_MovetoAvg_seed1/'; 'GK_MovetoAvg_seed2/'; 'GK_MovetoAvg_seed3/'; 'GK_MovetoAvg_seed4/';  'GK_MovetoAvg_seed5/'};
-% name = 'KATP'
-% files = {'KATP_MovetoAvg_seed1/'; 'KATP_MovetoAvg_seed2/'; 'KATP_MovetoAvg_seed3/'; 'KATP_MovetoAvg_seed4/'; 'KATP_MovetoAvg_seed5/'};
-
-% val=[100];
-% name = 'Coup_random';
-% files = {'Coup_MovetoAvg_seed1_random/'; 'Coup_MovetoAvg_seed2_random/'; 'Coup_MovetoAvg_seed3_random/'; 'Coup_MovetoAvg_seed4_random/'; 'Coup_MovetoAvg_seed5_random/'};
-% random = 1;
-%
-% name = 'GK_random';
-% files = {'GK_MovetoAvg_seed1_random/'; 'GK_MovetoAvg_seed2_random/'; 'GK_MovetoAvg_seed3_random/'; 'GK_MovetoAvg_seed4_random/'; 'GK_MovetoAvg_seed5_random/'};
-% random = 1;
-%
-% name = 'KATP_random';
-% files = {'KATP_MovetoAvg_seed1_random/'; 'KATP_MovetoAvg_seed2_random/'; 'KATP_MovetoAvg_seed3_random/'; 'KATP_MovetoAvg_seed4_random/'; 'KATP_MovetoAvg_seed5_random/'};
-% random = 1;
-
-% 
-% name = 'othervalues';
-% files = {'ATP_MovetoAvg_seed1/'; 'ATP_MovetoAvg_seed2/'; 'ATP_MovetoAvg_seed3/'; ...
-%     'KCaBK_MovetoAvg_seed1/'; 'KCaBK_MovetoAvg_seed2/'; 'KCaBK_MovetoAvg_seed3/';...
-%     'Kto_MovetoAvg_seed1/'; 'Kto_MovetoAvg_seed2/'; 'Kto_MovetoAvg_seed3/';...
-%     'PCaER_MovetoAvg_seed1/'; 'PCaER_MovetoAvg_seed2/'; 'PCaER_MovetoAvg_seed3/';...
-%     'PNACA_MovetoAvg_seed1/'; 'PNACA_MovetoAvg_seed2/'; 'PNACA_MovetoAvg_seed3/';...
-%     'Pop_MovetoAvg_seed1/'; 'Pop_MovetoAvg_seed2/'; 'Pop_MovetoAvg_seed3/';...
-%     'Prel_MovetoAvg_seed1/'; 'Prel_MovetoAvg_seed2/'; 'Prel_MovetoAvg_seed3/'};
-% 
-% fullname = {'ATP','ATP','ATP', 'KCaBK','KCaBK','KCaBK', 'Kto','Kto','Kto', 'PCaER','PCaER','PCaER',...
-%     'PNACA','PNACA','PNACA', 'Pop', 'Pop', 'Pop', 'Prel', 'Prel', 'Prel'};
-% random = 1;
-% seed = {'1', '2', '3','1', '2', '3','1', '2', '3','1', '2', '3','1', '2', '3','1', '2', '3','1', '2', '3'};
+files = {'WT_G2to11_Coup120Seed1/'};
 
 for v = 1:length(val)
     for ii = 1:length(files)
-        filepath = [mainpath files{ii}];
+        filepath = [files{ii}];
         calciumT = importdata([filepath '/calcium.txt']);    %update this path for your folder
         
         RandomVarsT=importdata([filepath '/RandomVars.txt']);
@@ -145,14 +86,7 @@ for v = 1:length(val)
         
         %get AUC for the increase
         AUC(ii) = trapz(MeanIslet(HHtime:HHtime+300));
-        AvgTresp(ii) = HHtime;
-        % 5. PLOTTING SIGNAL, XCOV, AND OUTPUTTING MAX XCOV AND CORRESPONDING TIME LAG
-        
-        % figure
-        % plot(By, 'Linewidth',2)
-        % hold on
-        % plot(A - mean(A),'Linewidth',2)
-        % title('Islet-Average Ca: Experimental and Low-Frequency ifft fit')                                                  % Period of the main component
+        AvgTresp(ii) = HHtime; % Period of the main component
         %
         % 6. PLOTTING gKatp and kGlyc FOR THE 1st RESPONDERS AND FOR THE ISLET-AVERAGE.
         gKatp=RandomVarsT(:,1);              % pulling Katp (potassium channel conductance) from RandomVars's column 1;
@@ -219,8 +153,7 @@ for v = 1:length(val)
         FirstgkGlycMean=mean(kGlycCellsNZ);   % finding avreage kGlyc for the first [1:x] cells
         
         first_parameters(ii,:) = [FirstgKatpMean,  FirstgCoupMean, FirstgkGlycMean];
-        %whichcells_first(:,ii) = FirstInd(1:val(v))';
-        % whichcells_first = sort(whichcells_first, 1);
+        
         %%%%%Locating last responders and their corresponding metabolic and
         %%%%%electrical parameters:
         jj=1;
@@ -268,18 +201,6 @@ for v = 1:length(val)
         hold on
         plot(LastRespCa)
         
-%         dlmwrite([resultspath  name 'Seed' seed{ii} 'FirstResponder' num2str(val(v)) '.txt'], FirstIndCol(1:val(v))-1);
-%         dlmwrite([resultspath  name 'Seed' seed{ii} 'SecondResponder' num2str(val(v)) '.txt'], FirstIndCol(val(v)+1:val(v)*2)-1);
-%         dlmwrite([resultspath name 'Seed' seed{ii} 'FullListofResponder' '.txt'], FirstIndCol-1);
-%         dlmwrite([resultspath name 'Seed' seed{ii} 'ResponseTime' '.txt'], cHHtime/10);
-%         
-%         dlmwrite([resultspath fullname{ii} name 'Seed' seed{ii} 'FirstResponder' num2str(val(v)) '.txt'], FirstIndCol(1:val(v))-1);
-%         dlmwrite([resultspath fullname{ii} name 'Seed' seed{ii} 'SecondResponder' num2str(val(v)) '.txt'], FirstIndCol(val(v)+1:val(v)*2)-1);
-%         dlmwrite([resultspath fullname{ii} name 'Seed' seed{ii} 'FullListofResponder' '.txt'], FirstIndCol-1);
-%         
-        %dlmwrite([mainpath name 'Seed' seed{ii} 'FirstResponder.txt'], cppfirstind)
-        %dlmwrite([mainpath name 'Seed' seed{ii} 'SecondResponder.txt'], cppfirstind)
-%        saveAllFigsToPPT([resultspath name 'Seed' seed{ii} datestr(datetime('today'))]);
     end
     
     %%means of first and last
@@ -310,43 +231,14 @@ for v = 1:length(val)
     TrespCellsLastNon_mean=mean(TrespNonL)';
     
     randlabels = {'gKATP', 'gCoup', 'kGlyc'};
-    if checkcells
-        allrandfirst = [gKatpCellsZ, gCoupCellsZ, kGlycCellsZ];
-    else
-        allrandfirst = [gKatpCellsF, gCoupCellsF, kGlycCellsF];
-    end
+    
+    allrandfirst = [gKatpCellsF, gCoupCellsF, kGlycCellsF];
+    
     m = 0;
     for n = 1:length(randlabels)
         allrandfirststruct.([randlabels{n} seed{1}]) = allrandfirst(:,length(seed)*m+1);
-        allrandfirststruct.([randlabels{n} seed{2}]) = allrandfirst(:,length(seed)*m+2);
-        allrandfirststruct.([randlabels{n} seed{3}]) = allrandfirst(:,length(seed)*m+3);
-        allrandfirststruct.([randlabels{n} seed{4}]) = allrandfirst(:,length(seed)*m+4);
-        allrandfirststruct.([randlabels{n} seed{5}]) = allrandfirst(:,length(seed)*m+5);
         m=m+1;
     end
-    %
-%     filename = [resultspath name 'randomfirstdata' datestr(datetime('today'))];
-%     T = struct2table(allrandfirststruct);
-%     writetable(T,[filename '.xlsx']);
-    
-    if checkcells
-        allrandnonfirst = [gKatpCellsNonZ, gCoupCellsNonZ, kGlycCellsNonZ];
-    else
-        allrandnonfirst = [gKatpCellsNonF, gCoupCellsNonF, kGlycCellsNonF];
-    end
-    m = 0;
-    for n = 1:length(randlabels)
-        allrandnonfirststruct.([randlabels{n} seed{1}]) = allrandnonfirst(:,length(seed)*m+1);
-        allrandnonfirststruct.([randlabels{n} seed{2}]) = allrandnonfirst(:,length(seed)*m+2);
-        allrandnonfirststruct.([randlabels{n} seed{3}]) = allrandnonfirst(:,length(seed)*m+3);
-        allrandnonfirststruct.([randlabels{n} seed{4}]) = allrandnonfirst(:,length(seed)*m+4);
-        allrandnonfirststruct.([randlabels{n} seed{5}]) = allrandnonfirst(:,length(seed)*m+5);
-        m=m+1;
-    end
-    
-%     filename = [resultspath name 'randomnonfirstdata' datestr(datetime('today'))];
-%     T = struct2table(allrandnonfirststruct);
-%     writetable(T,[filename '.xlsx']);
     
     MeansLabels = {'IsletAvggKATP', 'IsletAvgCoup', 'IsletAvgkGlc','IsletStdgKATP', 'IsletStdCoup', 'IsletStdkGlc',...
         'AUCmeanislet', 'IsletAvgTresp', 'gKatpCellsFirst_mean', 'gCoupCellsFirst_mean', 'kGlycCellsFirst_mean', 'TrespCellsFirst_mean',...
@@ -360,27 +252,16 @@ for v = 1:length(val)
     MeansNon = [gKatpCellsFirstNon_mean, gCoupCellsFirstNon_mean, kGlycCellsFirstNon_mean, TrespCellsFirstNon_mean/10,......
         gKatpCellsLastNon_mean, gCoupCellsLastNon_mean, kGlycCellsLastNon_mean, TrespCellsLastNon_mean/10];
     
-    if checkcells
-        MeansLabelsZero = {'gKatpCellsZero_mean', 'gCoupCellsZero_mean', 'kGlycCellsZero_mean', 'TrespCellsZero_mean'};
-        MeansZero = [gKatpCellsZero_mean, gCoupCellsZero_mean, kGlycCellsZero_mean, TrespCellsZero_mean/10];
-        
-    end
-    
-    if checkcells
-        MeanLabels1 = [MeansLabels, MeansLabelsZero, MeansLabelsNon];
-        Means1 = [Means, MeansZero, MeansNon];
-    else
-        MeanLabels1 = [MeansLabels, MeansLabelsNon];
-        Means1 = [Means, MeansNon];
-    end
+    MeanLabels1 = [MeansLabels, MeansLabelsNon];
+    Means1 = [Means, MeansNon];
     
     for m = 1:length(Means1)
         allmeans.(MeanLabels1{m}) = Means1(:,m);
     end
     
-%     filename = [resultspath name 'summarydata' datestr(datetime('today'))];
-%     T = struct2table(allmeans);
-%     writetable(T,[filename '.xlsx']);
+    %     filename = [resultspath name 'summarydata' datestr(datetime('today'))];
+    %     T = struct2table(allmeans);
+    %     writetable(T,[filename '.xlsx']);
     
-   % save([resultspath 'workspace_first_ind_parameters_' name num2str(val(v))])
+    % save([resultspath 'workspace_first_ind_parameters_' name num2str(val(v))])
 end
